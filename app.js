@@ -3,12 +3,24 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+const bp = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 
 var app = express();
+//Setting up session information
+app.use(session({
+  secret: 'long_string_for_session_sercure',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {maxAge:6000}
+}))
+
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
