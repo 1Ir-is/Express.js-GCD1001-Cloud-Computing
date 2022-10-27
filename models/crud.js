@@ -1,10 +1,10 @@
 var pg_conn = require('./pg_config');
-async function crud(req_body){
+async function crud(req_body,session){
   let id = req_body.id;
   let product_name = req_body.name;
   let price = req_body.price;
   let quantity = req_body.quantity;
-  let shop_id = req_body.shop_id;
+  let shop_id = session.shop_id;
   if (req_body.crud == 'update'){
     var query = {
       text: `UPDATE products
@@ -21,7 +21,6 @@ async function crud(req_body){
     }
   }
   else {
-
     var query = {
       text: `INSERT INTO products VALUES
             ($1, $2, $3, $4, $5);`,
