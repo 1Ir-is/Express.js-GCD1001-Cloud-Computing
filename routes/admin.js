@@ -1,6 +1,6 @@
 var express = require('express');
 var gen_box = require('../models/select_box');
-var display_product = require('../models/table_display');
+var display_product = require('../models/product_table');
 const { render } = require('ejs');
 var router = express.Router();
 
@@ -8,7 +8,8 @@ var router = express.Router();
 var session;
 router.get('/', async function(req, res, next) {
   session = req.session;
-  if(session.user_id&&session.shop_id==0){
+  console.log(session.shop_id)
+  if(session.user_id){
     let shop_id = session.shop_id;
     let username = session.user_id;
     let table = await display_product(shop_id,session);

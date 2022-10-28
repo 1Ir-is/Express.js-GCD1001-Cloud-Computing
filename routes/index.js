@@ -1,6 +1,6 @@
 var express = require('express');
+var authen = require('../models/authenticator')
 var router = express.Router();
-var authen = require('../models/authenticator');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -50,8 +50,4 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-
-
 module.exports = router;
-
-

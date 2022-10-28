@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var display_product = require('../models/table_display');
+var display_product = require('../models/product_table');
 var crud = require('../models/crud');
 var session;
 
